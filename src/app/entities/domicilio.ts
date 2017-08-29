@@ -12,6 +12,8 @@ export class Domicilio {
     public torre: string;
     public localidad: Localidad;
     public codigo_postal: string;
+    public barrio: string;
+    public observaciones: string;
 
     constructor(
         id_domicilio?: number,
@@ -21,7 +23,9 @@ export class Domicilio {
         dpto?: string,
         torre?: string,
         localidad?: Localidad,
-        codigo_postal?: string
+        codigo_postal?: string,
+        barrio?: string,
+        observaciones?: string,
     ) {
         if (id_domicilio) this.id_domicilio = id_domicilio;
         else this.id_domicilio = null;
@@ -46,6 +50,12 @@ export class Domicilio {
 
         if (codigo_postal) this.codigo_postal = codigo_postal;
         else this.codigo_postal = null;
+
+        if (barrio) this.barrio = barrio;
+        else this.barrio = null;
+
+        if (observaciones) this.observaciones = observaciones;
+        else this.observaciones = null;
     }
 
 }
