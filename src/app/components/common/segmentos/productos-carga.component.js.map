@@ -1,0 +1,1 @@
+{"version":3,"file":"productos-carga.component.js","sourceRoot":"","sources":["productos-carga.component.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,sCAA0C;AAO1C,IAAa,uBAAuB;IAGhC;IAAgB,CAAC;IACrB,8BAAC;AAAD,CAAC,AAJD,IAIC;AAJY,uBAAuB;IALnC,gBAAS,CAAC;QACP,QAAQ,EAAE,MAAM,CAAC,EAAE;QACnB,QAAQ,EAAE,iBAAiB;QAC3B,WAAW,EAAE,kCAAkC;KAClD,CAAC;;GACW,uBAAuB,CAInC;AAJY,0DAAuB"}

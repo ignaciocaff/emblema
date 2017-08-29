@@ -1,0 +1,336 @@
+﻿<form #empleoForm="ngForm" name="empleoForm">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <h4>Datos de Empleo</h4>
+      <p class="text-muted">
+        Seleccione el tipo de empleo del cliente y el subtipo en caso de que corresponda
+      </p>
+    </div>
+  </div>
+  <!--Row Seleccion de Tipo Empleo-->
+  <div class="row" style="margin-bottom:15px">
+    <div class="col-md-4 col-sm-4">
+      <div class="form-group">
+        <label class="control-label">Tipo de Empleo</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select [(ngModel)]="empleo.tipoEmpleo" name="tipoEmpleo" class="form-control selectpicker" (ngModelChange)="tipoEmpleo_onChange($event)">
+                    <option value="" disabled>Elija su opcion</option>
+                    <option *ngFor="let tipoEmpleo of lsTiposEmpleo" [ngValue]="tipoEmpleo">{{tipoEmpleo.n_tipo_empleo}}</option>
+                </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="form-group">
+        <label class="control-label">Sub Tipo</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select [(ngModel)]="empleo.subTipoEmpleo" name="subTipoEmpleo" class="form-control selectpicker" (ngModelChange)="subTipoEmpleo_onChange($event)"
+              [disabled]="empleo.tipoEmpleo.n_tipo_empleo == 'Relacion de Dependencia'">
+                    <option value="" disabled>Elija su opcion</option>
+                    <option *ngFor="let subTipoEmpleo of lsSubTiposEmpleo" [ngValue]="subTipoEmpleo">{{subTipoEmpleo.n_subtipo_empleo}}</option>
+                </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Campos para empleo en Relacion de Dependencia-->
+  <div *ngIf="empleo.tipoEmpleo.n_tipo_empleo == 'Relacion de Dependencia'">
+    <div class="row">
+      <div class="col-md-7 col-sm-7">
+        <h4>
+          Empleo en Relacion de Dependencia
+        </h4>
+        <p class="text-muted">
+          Ingrese los datos correspondientes a un empleo en Relacion de Dependencia
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-3">
+        <div class="form-group">
+          <label class="control-label">Empleado en</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input [(ngModel)]="empleo.razon_social" [required]="empleo.tipoEmpleo.n_tipo_empleo == 'Relacion de Dependencia'" name="razon_social"
+                class="form-control" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <div class="form-group">
+          <label class="control-label">Ramo</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+              <select [(ngModel)]="empleo.ramo" name="ramo" class="form-control selectpicker">
+                    <option value="">Elija su opcion</option>
+                    <option *ngFor="let ramo of lsRamos" [ngValue]="ramo">{{ramo.n_ramo}}</option>
+                </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-2"> <label class="control-label">Cargo</label>
+        <div class="form-group">
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <input [(ngModel)]="empleo.cargo" [required]="empleo.tipoEmpleo.n_tipo_empleo == 'Relacion de Dependencia'" name="cargo"
+                class="form-control" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1 col-sm-1">
+        <div class="form-group">
+          <label class="control-label">Antig</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <input [(ngModel)]="empleo.antiguedad" [required]="empleo.tipoEmpleo.n_tipo_empleo == 'Relacion de Dependencia'" name="antiguedad"
+                placeholder="Años" class="form-control" type="number">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <div class="form-group">
+          <label class="control-label">Ingresos</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+              <input [(ngModel)]="empleo.ingreso " [required]="empleo.tipoEmpleo.n_tipo_empleo == 'Relacion de Dependencia'" style="text-align: center" name="ingresos"
+                class="form-control" type="number">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-3">
+        <div class="form-group">
+          <label class="control-label">Calle</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <input [(ngModel)]="empleo.domicilio.calle" required name="calle" class="form-control" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-2"> <label class="control-label">Numeracion</label>
+        <div class="form-group">
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <input [(ngModel)]="empleo.domicilio.numeracion" name="numeracion" required="numeracion" class="form-control" type="number">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <div class="form-group">
+          <label class="control-label">Telefono</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon-earphone"></i></span>
+              <input [(ngModel)]="empleo.contacto.telefono_movil" required name="telefono_movil" class="form-control" type="number">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+  <!--Campos para empleo Cuenta Propia - Comerciante-->
+  <div class="row" *ngIf="empleo.subTipoEmpleo.n_subtipo_empleo == 'Comerciante'">
+    <div class="col-md-8 col-sm-8">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <h4>
+            Cuenta Propia - Comerciante
+          </h4>
+          <p class="text-muted">
+            Ingrese los datos correspondientes a un empleo Cuenta Propia - Comerciante
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <label class="control-label">Razon Social</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input [(ngModel)]="empleo.razon_social" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Comerciante'" name="razon_social"
+                  class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <label class="control-label">Ramo</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="empleo.ramo" name="ramoComerciante" class="form-control selectpicker">
+                            <option value="">Elija su opcion</option>
+                            <option *ngFor="let ramo of lsRamos" [ngValue]="ramo">{{ramo.n_ramo}}</option>
+                        </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <label class="control-label">Ingresos</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                <input [(ngModel)]="empleo.ingreso" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Comerciante'" name="ingresosComerciante"
+                  class="form-control" type="number">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <label class="control-label">Calle</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input [(ngModel)]="empleo.domicilio.calle" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Comerciante'" name="calleComerciante"
+                  class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3"> <label class="control-label">Numeracion</label>
+          <div class="form-group">
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input [(ngModel)]="empleo.domicilio.numeracion" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Comerciante'" name="numeracionComerciante"
+                  class="form-control" type="number">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <label class="control-label">Telefono</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon-earphone"></i></span>
+                <input [(ngModel)]="empleo.contacto.telefono_movil" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Comerciante'" name="telefonoComerciante"
+                  class="form-control" type="number">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Campos para empleo Cuenta Propia - Profesional-->
+  <div class="row" *ngIf="empleo.subTipoEmpleo.n_subtipo_empleo == 'Profesional'">
+    <div class="col-md-8 col-sm-8">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <h4>
+            Cuenta Propia - Profesional
+          </h4>
+          <p class="text-muted">
+            Ingrese los datos correspondientes a un empleo Cuenta Propia - Profesional
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <label class="control-label">Profesion</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input [(ngModel)]="empleo.profesion" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Profesional'" name="profesion"
+                  class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <div class="form-group">
+            <label class="control-label">Ingresos</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                <input [(ngModel)]="empleo.ingreso" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Profesional'" name="ingresoProfesional"
+                  class="form-control" type="number">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <div class="form-group">
+            <label class="control-label">Antig</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <input [(ngModel)]="empleo.antiguedad" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Profesional'" name="antiguedadProfesional"
+                  placeholder="Años" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <label class="control-label">Calle</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input [(ngModel)]="empleo.domicilio.calle" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Profesional'" name="calleProfesional"
+                  class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3"> <label class="control-label">Numeracion</label>
+          <div class="form-group">
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input [(ngModel)]="empleo.domicilio.numeracion" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Profesional'" name="numeracionProfesional"
+                  class="form-control" type="number">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="form-group">
+            <label class="control-label">Telefono</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon-earphone"></i></span>
+                <input [(ngModel)]="empleo.contacto.telefono_movil" class="form-control" [required]="empleo.subTipoEmpleo.n_subtipo_empleo == 'Profesional'"
+                  name="telefonomovilProfesional" type="number">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!--<button (click)="test()">Prueba</button>-->

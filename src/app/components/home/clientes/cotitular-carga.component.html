@@ -1,0 +1,180 @@
+﻿<div class="row">
+  <div class="col-md-6 col-sm-6">
+    <h4>
+      Datos Personales
+    </h4>
+    <p class="text-muted">
+      Ingrese los datos personales del cotitular si corresponde
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group has-feedback">
+          <label class="control-label">Documento</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input [(ngModel)]="cotitular.nro_documento" class="form-control" type="text" on-blur="consultarDatosCotitular()">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group has-feedback">
+          <label class="control-label">Tipo de Documento</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+              <select [(ngModel)]="cotitular.tipoDocumento" class="form-control selectpicker" *ngIf="!existeCotitular">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let tipoDocumento of lsTiposDocumento" [ngValue]="tipoDocumento">{{tipoDocumento.n_tipo_documento}}</option>
+                            </select>
+              <input [(ngModel)]="cotitular.tipoDocumento.n_tipo_documento" *ngIf="existeCotitular" [disabled]="existeCotitular" type="text"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group has-feedback">
+          <label class="control-label">Nombre</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input [(ngModel)]="cotitular.nombre" class="form-control" type="text" [disabled]="existeCotitular">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group has-feedback">
+          <label class="control-label">Apellido</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input [(ngModel)]="cotitular.apellido" class="form-control" type="text" [disabled]="existeCotitular">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group has-feedback">
+          <label class="control-label">Fecha Nacimiento</label>
+          <div class="inputGroupContainer">
+            <div class="form-group">
+              <div class='input-group date' id='datetimepicker'>
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar">
+                  </span>
+                </span>
+                <input [(ngModel)]="cotitular.fecha_nacimiento" type='date' class="form-control" *ngIf="!existeCotitular" [disabled]="existeCotitular"
+                />
+                <input value="{{cotitular.fecha_nacimiento | date:'yyyy-MM-dd'}}" type='date' class="form-control" *ngIf="existeCotitular"
+                  [disabled]="existeCotitular" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-sm-6">
+    <h4>
+      Datos de Domicilio
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Calle</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+          <input [(ngModel)]="cotitular.domicilio.calle" class="form-control" type="text" [disabled]="existeCotitular">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group has-feedback">
+      <label class="control-label">Numeracion</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+          <input [(ngModel)]="cotitular.domicilio.numeracion" class="form-control" type="number" [disabled]="existeCotitular">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Provincia</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+          <select [(ngModel)]="provincia" class="form-control selectpicker" (ngModelChange)="provincia_onChanged($event)" *ngIf="!existeCotitular">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let prov of lsProvincias" [ngValue]="prov">{{prov.n_provincia}}</option>
+                            </select>
+          <input [(ngModel)]="cotitular.domicilio.localidad.provincia.n_provincia" *ngIf="existeCotitular" [disabled]="existeCotitular"
+            type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Localidad</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+          <select [(ngModel)]="cotitular.domicilio.localidad" class="form-control selectpicker" *ngIf="!existeCotitular">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let loc of lsLocalidades" [ngValue]="loc">{{loc.n_localidad}}</option>
+                            </select>
+          <input [(ngModel)]="cotitular.domicilio.localidad.n_localidad" *ngIf="existeCotitular" [disabled]="existeCotitular" type="text"
+            class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-sm-6">
+    <h4>
+      Datos de Contacto
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Telefono Celular</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon-earphone"></i></span>
+          <input [(ngModel)]="cotitular.contacto.telefono_movil" class="form-control" type="text" [disabled]="existeCotitular">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Telefono Fijo</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon-earphone"></i></span>
+          <input [(ngModel)]="cotitular.contacto.telefono_fijo" class="form-control" type="text" [disabled]="existeCotitular">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

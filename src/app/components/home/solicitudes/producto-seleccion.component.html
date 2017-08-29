@@ -1,0 +1,187 @@
+﻿<form #productoForm="ngForm" name="productoForm">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <h4 style="margin-top: 0px;">Nuevo Producto</h4>
+          <p class="text-muted">
+            Ingrese los datos del producto solicitado si no se encuentra en el listado
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Tipo de Producto</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="tipoProducto" name="tipoProducto" (ngModelChange)="tipoProducto_onChange($event)" class="form-control selectpicker"
+                  *ngIf="!existeProducto" [disabled]="existeProducto">
+                    <option *ngFor="let tipoProducto of lsTiposProducto" [ngValue]="tipoProducto">{{tipoProducto.n_tipo_producto}}</option>
+                </select>
+                <input [(ngModel)]="producto.segmento.tipoProducto.n_tipo_producto" name="n_tipo_producto" #n_tipo_producto='ngModel' *ngIf="existeProducto"
+                  [disabled]="existeProducto" type="text" class="form-control">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-primary" (click)="agregarTipoProducto()">+</button>
+                </div>
+                <i class="form-control-feedback" style="display: none;" data-bv-icon-for="state"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Segmento</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="producto.segmento" name="segmento" (ngModelChange)="segmento_onChange($event)" class="form-control selectpicker"
+                  *ngIf="!existeProducto" [disabled]="existeProducto">
+                    <option value=" ">Elija su opcion</option>
+                    <option *ngFor="let segmento of lsSegmentos" [ngValue]="segmento">{{segmento.n_segmento}}</option>
+                </select>
+                <input [(ngModel)]="producto.segmento.n_segmento" name="n_segmento" #n_segmento='ngModel' *ngIf="existeProducto" [disabled]="existeProducto"
+                  type="text" class="form-control">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-primary" (click)="agregarSegmento()">+</button>
+                </div>
+                <i class="form-control-feedback" style="display: none;" data-bv-icon-for="state"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Marca</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="marcaProducto" (ngModelChange)="marca_onChange($event)" name="marcaProducto" class="form-control selectpicker"
+                  *ngIf="!existeProducto" [disabled]="existeProducto">
+                    <option value=" ">Elija su opcion</option>
+                    <option *ngFor="let marca of lsMarcas" [ngValue]="marca">{{marca.n_marca}}</option>
+                </select>
+                <input [(ngModel)]="producto.modelo.marca.n_marca" name="n_marca" #n_marca='ngModel' *ngIf="existeProducto" [disabled]="existeProducto"
+                  type="text" class="form-control">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-primary" (click)="agregarMarca()">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Modelo</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="modeloProducto" (ngModelChange)="modelo_onChange($event)" name="modeloProducto" class="form-control selectpicker"
+                  *ngIf="!existeProducto" [disabled]="existeProducto">
+                    <option value=" ">Elija su opcion</option>
+                    <option *ngFor="let modelo of lsModelos" [ngValue]="modelo">{{modelo.n_modelo}}</option>
+                </select>
+                <input [(ngModel)]="producto.modelo.n_modelo" name="n_modelo" #n_modelo='ngModel' *ngIf="existeProducto" [disabled]="existeProducto"
+                  type="text" class="form-control">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-primary" (click)="agregarModelo()">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Combustible</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="producto.combustible" name="combustible" class="form-control selectpicker" *ngIf="!existeProducto" [disabled]="existeProducto">
+                    <option value=" ">Elija su opcion</option>
+                    <option *ngFor="let combustible of lsCombustibles" [ngValue]="combustible">{{combustible.n_combustible}}</option>
+                </select>
+                <input [(ngModel)]="producto.combustible.n_combustible" name="n_combustible" #n_combustible='ngModel' *ngIf="existeProducto"
+                  [disabled]="existeProducto" type="text" class="form-control">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-primary" (click)="agregarCombustible()">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Color</label>
+            <div class="inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="producto.color" name="color" class="form-control selectpicker" *ngIf="!existeProducto" [disabled]="existeProducto">
+                    <option value=" ">Elija su opcion</option>
+                    <option *ngFor="let color of lsColores" [ngValue]="color">{{color.n_color}}</option>
+                </select>
+                <input [(ngModel)]="producto.color.n_color" name="n_color" #n_color='ngModel' *ngIf="existeProducto" [disabled]="existeProducto"
+                  type="text" class="form-control">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-primary" (click)="agregarColor()">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="control-label">Año</label>
+            <div class="inputGroupContainer">
+              <div class="form-group">
+                <div class='input-group date'>
+                  <input [(ngModel)]="producto.anio" type='text' name="anio" class="form-control" [disabled]="existeProducto" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Precio</label>
+            <div class="inputGroupContainer">
+              <div class="form-group">
+                <div class='input-group'>
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                  <input [(ngModel)]="producto.precio" type='text' name="precio" class="form-control" [disabled]="existeProducto" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--  <div class="col-md-2">
+          <button style="margin-top: 25px; float: right" class="btn btn-default btn-md" type="button" (click)="limpiar()">Nuevo</button>
+        </div>-->
+      </div>
+    </div>
+    <div class="col-md-6">
+    <!--  <div *ngIf="itemCount != 0">
+        itemCount > 5 ? true : false >>> Utilizar esta sintaxis para aplicar paginacion
+        <data-table id="persons-grid" [pagination]="false" headerTitle="Productos Disponibles" [items]="items" [itemCount]="itemCount"
+          (rowClick)="rowClick($event)" [limit]="5" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip" (reload)="cargarListado($event)">
+          <data-table-column [property]="'marca'" [header]="'Marca'" [sortable]="true">
+          </data-table-column>
+          <data-table-column [property]="'modelo'" [header]="'Modelo'" [sortable]="true">
+          </data-table-column>
+          <data-table-column [property]="'año'" [header]="'Año'" [sortable]="true">
+          </data-table-column>
+          <data-table-column [property]="'precio'" [header]="'Precio'" [sortable]="true">
+          </data-table-column>
+        </data-table>
+        <p class="text-muted" style="margin-top: -10px">Los productos mostrados son aquellos que se encuentran disponibles en stock y sin reserva</p>
+      </div>
+      <button *ngIf="itemCount == 0" #btnConsultarListado (click)="cargarListado($event)" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i></button>
+    --></div>
+  </div>
+</form>

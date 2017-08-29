@@ -1,0 +1,41 @@
+﻿<div class="navbar navbar-default">
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#tab1" data-toggle="tab">Producto</a></li>
+    <li><a href="#tab2" data-toggle="tab">Cliente</a></li>
+    <li><a href="#tab3" data-toggle="tab">Conyugue</a></li>
+    <li><a href="#tab4" data-toggle="tab">Co-Titular</a></li>
+    <li><a href="#tab5" data-toggle="tab">Empleo</a></li>
+    <li><a href="#tab6" data-toggle="tab">Finalizar</a></li>
+  </ul>
+</div>
+<div class="tab-content">
+  <div class="tab-pane fade active in" id="tab1">
+    <producto-seleccion #productoComponent></producto-seleccion>
+  </div>
+  <div class="tab-pane fade" id="tab2">
+    <cliente-carga #clienteComponent></cliente-carga>
+  </div>
+  <div class="tab-pane fade" id="tab3">
+    <conyuge-carga #conyugeComponent></conyuge-carga>
+  </div>
+  <div class="tab-pane fade" id="tab4">
+    <cotitular-carga #cotitularComponent></cotitular-carga>
+  </div>
+  <div class="tab-pane fade" id="tab5">
+    <empleo-carga #empleoComponent></empleo-carga>
+  </div>
+  <div class="tab-pane fade" id="tab6">
+    <sena-carga #seniaComponent></sena-carga>
+    <div class="row">
+      <div class="col-md-4">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row ">
+  <div class="col-md-4 col-md-offset-1">
+  <button type="submit" [disabled]="!validacion()" (click)="confirmDialogSolicitud()" class="btn btn-success brn-lg" style="margin-top: 15px; ">Completar Solicitud</button>
+  <button type="submit" (click)="limpiar()" class="btn btn-default brn-lg" style="margin-top: 15px; ">Cancelar Solicitud</button>
+  </div>
+</div>

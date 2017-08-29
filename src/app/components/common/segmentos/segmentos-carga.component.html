@@ -1,0 +1,31 @@
+<form #segmentosForm="ngForm">
+    <h3>Carga de Segmentos</h3>
+    <p>Ingrese los datos para la carga de un Segmento</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group has-feedback">
+                <label class="control-label">Tipo de Producto</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <input [(ngModel)]="segmento.tipoProducto.n_tipo_producto" name="n_tipo_producto" #n_tipo_producto='ngModel' disabled
+                            type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group has-feedback">
+                <label class="control-label">Segmento</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <input [(ngModel)]="segmento.n_segmento" name="n_segmento" required #n_segmento='ngModel' type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!segmentosForm.valid" class="btn btn-primary" (click)="registrarSegmento()">Guardar</button>
+    <button type="button" md-button (click)="dialogRef.close()" class="btn">Cancelar</button>
+</form>

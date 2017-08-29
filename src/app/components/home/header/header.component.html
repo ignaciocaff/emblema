@@ -1,0 +1,28 @@
+﻿<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <!--<img alt="Brand" src="../assets/img/favicon-32x32.png" height="42" width="52">-->
+      </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <!--<p>Pepito</p>-->
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <h4 style="color: black; margin-top: 3px">Usuario: <a style="color: white">{{empleado.apellido}} {{empleado.nombre}} | {{empleado.usuario.perfil.n_perfil}}</a> </h4>
+          <!--<h4>Usuario: {{empleado.nombre}}</h4>-->
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-menu-hamburger" style="color:white"></span></a>
+          <ul class="dropdown-menu">
+            <li><a [routerLink]="['/login']" (click)="logOut()">Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--<div style="width: 100%; height: 5px; background-color: lightskyblue"></div>-->

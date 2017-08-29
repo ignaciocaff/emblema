@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-md-7 col-sm-7">
+        <h3>
+            Datos de Domicilio
+        </h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group has-feedback">
+            <label class="control-label">Calle</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input [(ngModel)]="domicilio.calle" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-feedback">
+            <label class="control-label">Numeracion</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input [(ngModel)]="domicilio.numeracion" class="form-control" type="number">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group has-feedback">
+            <label class="control-label">Piso</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input [(ngModel)]="domicilio.piso" class="form-control" type="number">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-feedback">
+            <label class="control-label">Departamento</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input [(ngModel)]="domicilio.departamento" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-feedback">
+            <label class="control-label">Torre</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input [(ngModel)]="domicilio.torre" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group has-feedback">
+            <label class="control-label">Provincia</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select [(ngModel)]="provincia" class="form-control selectpicker" (ngModelChange)="provincia_onChanged($event)">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let prov of lsProvincias" [ngValue]="prov">{{prov.n_provincia}}</option>
+                            </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-feedback">
+            <label class="control-label">Localidad</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select [(ngModel)]="domicilio.localidad" class="form-control selectpicker">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let loc of lsLocalidades" [ngValue]="loc">{{loc.n_localidad}}</option>
+                            </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-feedback">
+            <label class="control-label">Codigo Postal</label>
+            <div class="inputGroupContainer">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input [(ngModel)]="domicilio.codigo_postal" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<button (click)="test()">Prueba</button>-->

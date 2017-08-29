@@ -1,0 +1,26 @@
+<!--Listado de Productos-->
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="itemCount != 0">
+      <!--itemCount > 10 ? true : false >>> Utilizar esta sintaxis para aplicar paginacion-->
+      <data-table id="persons-grid" [pagination]="false" headerTitle="Listado de Productos" [items]="items"
+        [itemCount]="itemCount" (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip">
+        <data-table-column [property]="'marca'" [header]="'Marca'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'modelo'" [header]="'Modelo'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'color'" [header]="'Color'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'anio'" [header]="'Año'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'segmento'" [header]="'Segmento'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'combustible'" [header]="'Combustible'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'precio'" [header]="'Precio'" [sortable]="true">
+        </data-table-column>
+      </data-table>
+    </div>
+  </div>
+</div>
+<button #btnConsultarListado (click)="cargarListado($event)" class="btn btn-primary">Consultar Productos</button>

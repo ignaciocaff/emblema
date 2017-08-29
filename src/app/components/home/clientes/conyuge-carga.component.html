@@ -1,0 +1,84 @@
+﻿<div class="row">
+  <div class="col-md-4 col-sm-4">
+    <h4>
+      Datos Personales
+    </h4>
+    <p class="text-muted">
+      Ingrese los datos del Conyuge si corresponde
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Documento</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input [(ngModel)]="conyuge.nro_documento" class="form-control" type="text" on-blur="consultarDatosConyuge()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group has-feedback">
+      <label class="control-label">Tipo de Documento</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+          <select [(ngModel)]="conyuge.tipoDocumento" *ngIf="!existeConyuge" class="form-control selectpicker">
+                        <option value=" ">Elija su opcion</option>
+                        <option *ngFor="let tipoDocumento of lsTiposDocumento" [ngValue]="tipoDocumento">{{tipoDocumento.n_tipo_documento}}</option>
+                    </select>
+          <input [(ngModel)]="conyuge.tipoDocumento.n_tipo_documento" *ngIf="existeConyuge" [disabled]="existeConyuge" type="text"
+            class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Nombre</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input [(ngModel)]="conyuge.nombre" class="form-control" type="text" [disabled]="existeConyuge">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-group has-feedback">
+      <label class="control-label">Apellido</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input [(ngModel)]="conyuge.apellido" class="form-control" type="text" [disabled]="existeConyuge">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group has-feedback">
+      <label class="control-label">Fecha Nacimiento</label>
+      <div class="inputGroupContainer">
+        <div class="form-group">
+          <div class='input-group date' id='datetimepicker'>
+            <input [(ngModel)]="conyuge.fecha_nacimiento" type='text' class="form-control" type="date" *ngIf="!existeConyuge" [disabled]="existeConyuge"
+            />
+            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+            </span>
+            <input value="{{conyuge.fecha_nacimiento | date:'yyyy-MM-dd'}}" type='date' class="form-control" *ngIf="existeConyuge" [disabled]="existeConyuge"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+</div>

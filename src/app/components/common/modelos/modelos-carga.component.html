@@ -1,0 +1,31 @@
+<form #modelosForm="ngForm">
+    <h3>Carga de Modelos</h3>
+    <p>Ingrese los datos para la carga de un Modelo</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group has-feedback">
+                <label class="control-label">Marca</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <input [(ngModel)]="modelo.marca.n_marca" name="n_marca" #n_marca='ngModel' disabled
+                            type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group has-feedback">
+                <label class="control-label">Modelo</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <input [(ngModel)]="modelo.n_modelo" name="n_modelo" required #n_modelo='ngModel' type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!modelosForm.valid" class="btn btn-primary" (click)="registrarModelo()">Guardar</button>
+    <button type="button" md-button (click)="dialogRef.close()" class="btn">Cancelar</button>
+</form>

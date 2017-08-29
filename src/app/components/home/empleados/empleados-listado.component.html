@@ -1,0 +1,22 @@
+<!--Listado de Personal-->
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="itemCount != 0">
+      <!--itemCount > 10 ? true : false >>> Utilizar esta sintaxis para aplicar paginacion-->
+      <data-table id="persons-grid" [pagination]="false" headerTitle="Listado de Personal" [items]="items"
+        [itemCount]="itemCount" (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip">
+        <data-table-column [property]="'nombre'" [header]="'Nombre'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'apellido'" [header]="'Apellido'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'nro_documento'" [header]="'Documento'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'n_cargo'" [header]="'Cargo'" [sortable]="true">
+        </data-table-column>
+        <data-table-column [property]="'sup_ape'" [header]="'Supervisor'" [sortable]="true">
+        </data-table-column>
+      </data-table>
+    </div>
+  </div>
+</div>
+<button #btnConsultarListado (click)="cargarListado($event)" class="btn btn-primary">Consultar Personal</button>

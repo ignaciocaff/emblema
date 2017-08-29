@@ -1,0 +1,28 @@
+<h3>Confirmacion de Solicitud</h3>
+<p class="text-muted">Por favor verifique la informacion cargada antes de confirmar</p>
+<div class="row">
+  <div class="col-md-3">
+    <p><b>Producto:</b></p>
+  </div>
+  <div class="col-md-3  col-md-offset-2">
+    <!--<p>{{solicitud.producto.modelo.marca.n_marca}} - {{solicitud.producto.modelo.n_modelo}}</p>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <p><b>Importe Total:</b></p>
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+    <!--<p>${{solicitud.producto.precio}}</p>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <p><b>Monto Seña: </b></p>
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+    <!--<p>${{solicitud.senia}}</p>-->
+  </div>
+</div>
+<button type="button" md-raised-button class="btn btn-primary" (click)="dialogRef.close(true)">Confirmar</button>
+<button type="button" md-button (click)="dialogRef.close(false)">Cancel</button>`

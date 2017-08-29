@@ -1,0 +1,20 @@
+<form #tipoProductoForm="ngForm">
+    <h3>Carga de Tipo de Producto</h3>
+    <p>Ingrese los datos para la carga de un tipo de producto</p>
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group has-feedback">
+                <label class="control-label">Nombre</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <input [(ngModel)]="tipoProducto.n_tipo_producto" name="nombreTipoProducto" required type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!tipoProductoForm.valid" class="btn btn-primary" (click)="registrarTipoProducto()">Guardar</button>
+    <button type="button" md-button (click)="dialogRef.close()" class="btn">Cancelar</button>
+</form>

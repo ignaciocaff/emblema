@@ -1,0 +1,20 @@
+<form #combustibleForm="ngForm">
+    <h3>Carga de Tipo de Combustible</h3>
+    <p>Ingrese los datos para la carga de un tipo de combustible</p>
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group has-feedback">
+                <label class="control-label">Nombre</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <input [(ngModel)]="combustible.n_combustible" name="combustible" required type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!combustibleForm.valid" class="btn btn-primary" (click)="registrarCombustible()">Guardar</button>
+    <button type="button" md-button (click)="dialogRef.close()" class="btn">Cancelar</button>
+</form>

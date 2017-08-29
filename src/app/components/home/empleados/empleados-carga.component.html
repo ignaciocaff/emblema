@@ -1,0 +1,359 @@
+﻿<form #empleadoForm="ngForm" name="empleadoForm">
+  <div class="row">
+    <div class="col-md-4 col-sm-4">
+      <h4>
+        Datos Personales
+      </h4>
+      <p class="text-muted">
+        Ingrese los datos personales del cliente solicitante
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Documento</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input [(ngModel)]="empleado.nro_documento" name="nroDoc" required #nroDoc='ngModel' class="form-control" type="text" on-blur="consultarDatosEmpleado()">
+          </div>
+          <div *ngIf="nroDoc.errors && (nroDoc.dirty || nroDoc.touched)" class="error">
+            Documento es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group has-feedback">
+        <label class="control-label">Tipo de Documento</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select [(ngModel)]="empleado.tipoDocumento" name="tipoDoc" required #tipoDoc='ngModel' class="form-control selectpicker"
+               *ngIf="!existeEmpleado">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let tipoDocumento of lsTiposDocumento" [ngValue]="tipoDocumento">{{tipoDocumento.n_tipo_documento}}</option>
+                            </select>
+
+            <select [(ngModel)]="empleado.tipoDocumento" name="tipoDoc" required #tipoDoc='ngModel' class="form-control selectpicker"
+               *ngIf="existeEmpleado">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let tipoDocumento of lsTiposDocumento" [ngValue]="tipoDocumento.id_tipo_documento">{{tipoDocumento.n_tipo_documento}}</option>
+                            </select>                
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label for="nombre" class="control-label">Nombre</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input [(ngModel)]="empleado.nombre" name="nombre" required #nombre='ngModel' class="form-control" type="text" required=""
+              >
+          </div>
+          <div *ngIf="nombre.errors && (nombre.dirty || nombre.touched)" class="error">
+            Nombre es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Apellido</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input [(ngModel)]="empleado.apellido" name="apellido" required #apellido='ngModel' class="form-control" type="text">
+          </div>
+          <div *ngIf="apellido.errors && (apellido.dirty || apellido.touched)" class="error">
+            Apellido es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Nacionalidad</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <select [(ngModel)]="empleado.nacionalidad" name="nacionalidad" required #nacionalidad='ngModel' class="form-control selectpicker"
+               *ngIf="!existeEmpleado">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let nac of lsNacionalidades" [ngValue]="nac">{{nac.n_nacionalidad}}</option>
+                            </select>
+            <input [(ngModel)]="empleado.nacionalidad.n_nacionalidad" name="n_nacionalidad" required #n_nacionalidad='ngModel' *ngIf="existeEmpleado"
+              type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group has-feedback">
+        <label class="control-label">Estado Civil</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select [(ngModel)]="empleado.estadoCivil" name="estadoCivil" required #estadoCivil='ngModel' class="form-control selectpicker"
+               *ngIf="!existeEmpleado">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let estadoCivil of lsEstadosCivil" [ngValue]="estadoCivil">{{estadoCivil.n_estado_civil}}</option>
+                            </select>
+            <input [(ngModel)]="empleado.estadoCivil.n_estado_civil" name="n_estado_civil" required #n_estado_civil='ngModel' *ngIf="existeEmpleado"
+             type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <label class="control-label">Fecha Nacimiento</label>
+      <div class="inputGroupContainer">
+        <div class="form-group">
+          <div class='input-group date' id='datetimepicker'>
+            <input [(ngModel)]="empleado.fecha_nacimiento" name="fecha" required #fecha='ngModel' type='date' class="form-control" *ngIf="!existeEmpleado"
+               />
+            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar">
+                            </span>
+            </span>
+            <input value="{{empleado.fecha_nacimiento | date:'yyyy-MM-dd'}}" name="fecha" type='date' class="form-control" *ngIf="existeEmpleado"
+               />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-sm-9">
+      <h4>
+        Datos de Domicilio
+      </h4>
+      <p class="text-muted">
+        Ingrese los datos de Domicilio del cliente
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Calle</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input [(ngModel)]="empleado.domicilio.calle" name="calle" required #calle='ngModel' class="form-control" type="text" >
+          </div>
+          <div *ngIf="calle.errors && (calle.dirty || calle.touched)" class="error">
+            Calle es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group has-feedback">
+        <label class="control-label">Numeracion</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input [(ngModel)]="empleado.domicilio.numeracion" name="numeracion" required #numeracion='ngModel' class="form-control"
+              type="text" >
+          </div>
+          <div *ngIf="numeracion.errors && (numeracion.dirty || numeracion.touched)" class="error">
+            Numero es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-group has-feedback">
+        <label class="control-label">Piso</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>-->
+            <input [(ngModel)]="empleado.domicilio.piso" name="piso" #piso='ngModel' class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-group has-feedback">
+        <label class="control-label">Departamento</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>-->
+            <input [(ngModel)]="empleado.domicilio.dpto" name="dpto" #dpto='ngModel' class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-group has-feedback">
+        <label class="control-label">Torre</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>-->
+            <input [(ngModel)]="empleado.domicilio.torre" name="torre" #torre='ngModel' class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Provincia</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select [(ngModel)]="empleado.domicilio.provincia" name="provincia" required #provincia='ngModel' class="form-control selectpicker"
+              (ngModelChange)="provincia_onChanged($event)"  *ngIf="!existeEmpleado">
+                                <option value="null">Elija su opcion</option>
+                                <option *ngFor="let prov of lsProvincias" [ngValue]="prov">{{prov.n_provincia}}</option>
+                            </select>
+            <input [(ngModel)]="empleado.domicilio.localidad.provincia.n_provincia" name="n_provincia" required #n_provincia='ngModel'
+              *ngIf="existeEmpleado"  type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Localidad</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select [(ngModel)]="empleado.domicilio.localidad" name="localidad" required #localidad='ngModel' class="form-control selectpicker"
+               *ngIf="!existeEmpleado">
+                                <option value=" ">Elija su opcion</option>
+                                <option *ngFor="let loc of lsLocalidades" [ngValue]="loc">{{loc.n_localidad}}</option>
+                            </select>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-primary" (click)="agregarLocalidad()" *ngIf="!existeEmpleado">+</button>
+            </div>
+            <input [(ngModel)]="empleado.domicilio.localidad.n_localidad" name="n_localidad" required #n_localidad='ngModel' *ngIf="existeEmpleado"
+               type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group has-feedback">
+        <label class="control-label">Codigo Postal</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input [(ngModel)]="empleado.domicilio.codigo_postal" name="codigo_postal" required #codigo_postal='ngModel' class="form-control"
+              type="text" >
+          </div>
+          <div *ngIf="codigo_postal.errors && (codigo_postal.dirty || codigo_postal.touched)" class="error">
+            CP es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 15px">
+    <div class="col-md-8 col-sm-8">
+      <h4>
+        Datos de Contacto
+      </h4>
+      <p class="text-muted">
+        Ingrese los datos de Contacto del cliente
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Correo Electronico</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input [(ngModel)]="empleado.contacto.email" name="email" required #email='ngModel' class="form-control" type="text" >
+          </div>
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="error">
+            Email es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Telefono Celular</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon-earphone"></i></span>
+            <input [(ngModel)]="empleado.contacto.telefono_movil" name="telefono_movil" required #telefono_movil='ngModel' class="form-control"
+              type="text" >
+          </div>
+          <div *ngIf="telefono_movil.errors && (telefono_movil.dirty || telefono_movil.touched)" class="error">
+            Telefono movil es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group has-feedback">
+        <label class="control-label">Telefono Fijo</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon-earphone"></i></span>
+            <input [(ngModel)]="empleado.contacto.telefono_fijo" name="telefono_fijo" required #telefono_fijo='ngModel' class="form-control"
+              type="text" >
+          </div>
+          <div *ngIf="telefono_fijo.errors && (telefono_fijo.dirty || telefono_fijo.touched)" class="error">
+            Telefono fijo es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group has-feedback">
+        <label class="control-label">Cargo</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select [(ngModel)]="empleado.cargo" name="cargo" required #cargo='ngModel' class="form-control selectpicker" 
+              *ngIf="!existeEmpleado">
+                                <option value="null">Elija su opcion</option>
+                                <option *ngFor="let carg of lsCargos" [ngValue]="carg">{{carg.n_cargo}}</option>
+                            </select>
+            <input [(ngModel)]="empleado.cargo.n_cargo" name="n_cargo" required #n_cargo='ngModel' *ngIf="existeEmpleado" 
+              type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label">Supervisor</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <!--<input name="first_name" class="form-control" type="text">-->
+            <select [(ngModel)]="empleado.supervisor" name="supervisor" #supervisor='ngModel' class="form-control selectpicker" [disabled]="existeSupervisor"
+              *ngIf="!existeSupervisor">
+                        <option *ngFor="let empleado of lsEmpleados" [ngValue]="empleado">{{empleado.apellido}} {{empleado.nombre}}</option>
+                    </select>
+            <input [(ngModel)]="nombreCompleto" name="nombreSup" required #nombreSup='ngModel' *ngIf="existeSupervisor"
+              type="text" class="form-control">
+            <!--<ng2-completer [(ngModel)]="vendedor.persona.n_persona" [minSearchLength]="0"></ng2-completer>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+      <button type="submit" [disabled]="!empleadoForm.valid || existeEmpleado" (click)="registrarEmpleado()" class="btn btn-success">Registrar</button>
+      <button type="submit" [disabled]="!existeEmpleado" (click)="modificarEmpleado()" class="btn btn-success">Modificar</button>
+      <button (click)="limpiar()" class="btn btn-default">Cancelar</button>
+    </div>
+  </div>
+</form>
