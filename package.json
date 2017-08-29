@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
-  },
+  },prueba desde la web
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.0.0",
