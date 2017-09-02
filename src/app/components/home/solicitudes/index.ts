@@ -3,3 +3,7 @@ export * from './producto-seleccion.component';
 export * from './senia-carga.component';
 export * from './solicitudes-listado.component';
 export * from './solicitudes-confirmacion.component';
+export * from './scoring.component';
+export * from './contratos-carga.component';
+export * from './contratos-listado.component';
+export * from './mis-contratos-listado.component';

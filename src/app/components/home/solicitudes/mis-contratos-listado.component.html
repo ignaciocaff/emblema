@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group has-feedback">
+      <label class="control-label">Numero de Contrato</label>
+      <div class="inputGroupContainer">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input [(ngModel)]="contrato.id_contrato" class="form-control" type="text">
+          <div class="input-group-btn">
+            <button #btnConsultarListado type="button" class="btn btn-primary" (click)="cargarListado($event)">Consultar</button>
+          </div>
+        </div>
+        <div class="input-group">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="margin-bottom: 50px;" *ngIf="items != null">
+  <data-table id="persons-grid" [pagination]="itemCount > 10 ? true : false" headerTitle="Solicitudes" [items]="items" [itemCount]="itemCount"
+    (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip">
+    <data-table-column [property]="'id_contrato'" [header]="'Nro Contrato'" [sortable]="true" [resizable]="true">
+    </data-table-column>
+    <data-table-column [property]="'apellidoS'" [header]="'Supervisor'" [sortable]="true">
+    </data-table-column>
+    <!--<data-table-column
+            [property]="solicitud.producto.modelo.n_modelo"
+            [header]="Producto"
+            [sortable]="true">
+        </data-table-column>-->
+    <data-table-column [property]="'n_estado_contrato'" [header]="'Estado'" [sortable]="true">
+    </data-table-column>
+    <data-table-column [property]="'apellidoG'" [header]="'Gerente'" [sortable]="true">
+    </data-table-column>
+    <data-table-column [property]="'apellidoA'" [header]="'Asesor'" [sortable]="true">
+    </data-table-column>
+    <!--<data-table-column
+            [property]="'active'"
+            [header]="'Active'"
+            [width]="100"
+            [resizable]="true">
+            <template #dataTableHeader let-item="item">
+                <span style="color: rgb(232, 0, 0)">Active</span>
+            </template>
+            <template #dataTableCell let-item="item">
+                <span style="color: grey">
+                <span class="glyphicon glyphicon-ok" *ngIf="item.active"></span>
+                <span class="glyphicon glyphicon-remove" *ngIf="!item.active"></span>
+                </span>
+            </template>
+        </data-table-column>-->
+  </data-table>
+</div>

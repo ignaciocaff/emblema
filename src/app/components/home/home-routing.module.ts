@@ -5,7 +5,10 @@ import { HomeComponent } from './index';
 
 import {
     SolicitudesCargaComponent,
-    SolicitudesListadoComponent
+    SolicitudesListadoComponent,
+    ContratosCargaComponent,
+    ContratosListadoComponent,
+    MisContratosListadoComponent
 } from './solicitudes/index';
 
 import {
@@ -26,6 +29,9 @@ const homeRoutes: Routes = [
     {
         path: 'home', component: HomeComponent,
         children: [
+            { path: 'contratos-carga', component: ContratosCargaComponent },
+            { path: 'mis-contratos-listado', component: MisContratosListadoComponent },
+            { path: 'contratos-listado', component: ContratosListadoComponent },
             { path: 'solicitudes-carga', component: SolicitudesCargaComponent },
             { path: 'solicitudes-listado', component: SolicitudesListadoComponent },
             { path: 'productos-carga', component: ProductosCargaComponent },

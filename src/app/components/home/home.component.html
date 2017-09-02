@@ -12,9 +12,24 @@
       <div id="collapseSolicitudes" class="panel-collapse collapse">
         <div class="panel-body">
           <table class="table">
+            <tr *ngIf = "esGerente">
+              <td>
+                <a (click)="contratosCarga_Click()" class="active">Ingreso Contrato</a>
+              </td>
+            </tr>
+            <tr *ngIf = "esGerente">
+              <td>
+                <a (click)="contratosListado_Click()">Listado Contratos</a>
+              </td>
+            </tr>
+            <tr *ngIf = "esSupervisor || esAsesor">
+              <td>
+                <a (click)="miscontratosListado_Click()">Mis Contratos</a>
+              </td>
+            </tr>
             <tr>
               <td>
-                <a (click)="solicitudesCarga_Click()" class="active">Carga</a>
+                <a (click)="solicitudesCarga_Click()">Carga</a>
               </td>
             </tr>
             <tr>

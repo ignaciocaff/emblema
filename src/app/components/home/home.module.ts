@@ -28,7 +28,11 @@ import {
     ProductoSeleccionComponent,
     SeniaCargaComponent,
     SolicitudesCargaComponent,
-    SolicitudesListadoComponent
+    SolicitudesListadoComponent,
+    ScoringComponent,
+    ContratosCargaComponent,
+    ContratosListadoComponent,
+    MisContratosListadoComponent
 
 } from './solicitudes/index';
 
@@ -75,7 +79,11 @@ import {
         EmpleadosCargaComponent,
         EmpleadosListadoComponent,
         ProductosListadoComponent,
-        ProductosCargaComponent
+        ProductosCargaComponent,
+        ScoringComponent,
+        ContratosCargaComponent,
+        ContratosListadoComponent,
+        MisContratosListadoComponent,
     ],
     providers: [
         SolicitudService,

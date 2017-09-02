@@ -19,3 +19,4 @@ export * from './persona.service';
 export * from './solicitud.service';
 export * from './empleado.service';
 export * from './cargo.service';
+export * from './contrato.service';

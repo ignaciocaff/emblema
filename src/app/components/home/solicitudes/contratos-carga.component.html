@@ -1,0 +1,48 @@
+<form #contratoForm="ngForm" name="contratoForm">
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <h4>Datos del Contrato</h4>
+      <p class="text-muted">
+        Ingrese los datos correspondientes al Contrato que desea cargar.<br> Tenga en cuenta que el mismo sera registrado
+        con estado <a>Recepción</a> hasta que sea derivado a un asesor
+      </p>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 15px">
+    <div class="col-md-2">
+      <div class="form-group">
+        <label class="control-label">Nro Contrato</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <input [(ngModel)]="contrato.id_contrato" required name="nro_contrato" class="form-control" type="number" data-bv-field="senia" data-bv-field="nro_contrato"
+              style="text-align: center">
+            <i class="form-control-feedback"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3">
+      <div class="form-group">
+        <label class="control-label">Supervisor de Administración</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <!--<input name="first_name" class="form-control" type="text">-->
+            <select [(ngModel)]="contrato.supervisor_venta" required name="supervisor_venta" class="form-control selectpicker">
+                        <option *ngFor="let empleado of lsEmpleados" [ngValue]="empleado">{{empleado.apellido}} {{empleado.nombre}}</option>
+                    </select>
+            <!--<ng2-completer [(ngModel)]="vendedor.persona.n_persona" [minSearchLength]="0"></ng2-completer>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-sm-7">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <button type="submit" [disabled]="!validacion()" (click)="confirmDialogContrato()" class="btn btn-success brn-lg" style="margin-top: 15px; ">Enviar Contrato</button>
+      <button type="submit" (click)="limpiar()" class="btn btn-default brn-lg" style="margin-top: 15px; ">Cancelar Contrato</button>      </div>
+  </div>
+
+</form>

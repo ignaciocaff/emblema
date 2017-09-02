@@ -25,3 +25,4 @@ export * from './empleado';
 export * from './ramo';
 export * from './subTipoEmpleo';
 export * from './notaSolicitud';
+export * from './contrato';
